@@ -6,7 +6,7 @@ const showMill = document.getElementById("show-millionaires");
 const sort = document.getElementById("sort");
 const calWealth = document.getElementById("calculate-wealth");
 
-const data = [];
+let data = [];
 
 getRandomUser();
 getRandomUser();
@@ -32,23 +32,34 @@ function addData(obj) {
   updateDOM();
 }
 
-function formatAmount(value)
-{
-    return `₹` +(value).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');  // 12,345.67
+function formatAmount(value) {
+  return `₹` + value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,"); // 12,345.67
+}
+
+function doubleMoney() {
+    // console.log('jai')
+  data = data.map((item) => {
+    return { ...item, income: item.income * 2 };
+  });
+
+  updateDOM();
 }
 
 function updateDOM(storedData = data) {
   main.innerHTML = ` <h2><strong>Person</strong>Wealth</h2>`;
 
-  storedData.forEach(item=>{
-    const element = document.createElement('div');
-    element.classList.add('person');
-    console.log(element)
-    element.innerHTML = `<strong>${item.name}</strong>${formatAmount(item.income)}`;
+  storedData.forEach((item) => {
+    const element = document.createElement("div");
+    element.classList.add("person");
+    console.log(element);
+    element.innerHTML = `<strong>${item.name}</strong>${formatAmount(
+      item.income
+    )}`;
     main.appendChild(element);
-  })
+  });
 }
 
-addUser.addEventListener('click',getRandomUser);
+addUser.addEventListener("click", getRandomUser);
+double.addEventListener("click", doubleMoney);
 
 console.log(data);
