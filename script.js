@@ -45,6 +45,14 @@ function doubleMoney() {
   updateDOM();
 }
 
+function sortList()
+{
+    console.log('jai')
+    data.sort((a,b)=>b.income - a.income);
+
+    updateDOM();
+}
+
 function updateDOM(storedData = data) {
   main.innerHTML = ` <h2><strong>Person</strong>Wealth</h2>`;
 
@@ -61,5 +69,6 @@ function updateDOM(storedData = data) {
 
 addUser.addEventListener("click", getRandomUser);
 double.addEventListener("click", doubleMoney);
+sort.addEventListener("click", sortList);
 
 console.log(data);
