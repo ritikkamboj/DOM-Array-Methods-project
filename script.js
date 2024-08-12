@@ -47,10 +47,20 @@ function doubleMoney() {
 
 function sortList()
 {
-    console.log('jai')
+    // console.log('jai')
+
     data.sort((a,b)=>b.income - a.income);
 
     updateDOM();
+}
+
+function showMillionaire()
+{
+//  console.log(data)
+data = data.filter(item => item.income >(1000000));
+// console.log(data);
+
+updateDOM();
 }
 
 function updateDOM(storedData = data) {
@@ -59,7 +69,7 @@ function updateDOM(storedData = data) {
   storedData.forEach((item) => {
     const element = document.createElement("div");
     element.classList.add("person");
-    console.log(element);
+    // console.log(element);
     element.innerHTML = `<strong>${item.name}</strong>${formatAmount(
       item.income
     )}`;
@@ -70,5 +80,6 @@ function updateDOM(storedData = data) {
 addUser.addEventListener("click", getRandomUser);
 double.addEventListener("click", doubleMoney);
 sort.addEventListener("click", sortList);
+showMill.addEventListener("click", showMillionaire);
 
-console.log(data);
+// console.log(data);
