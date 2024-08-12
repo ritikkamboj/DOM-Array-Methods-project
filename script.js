@@ -37,7 +37,7 @@ function formatAmount(value) {
 }
 
 function doubleMoney() {
-    // console.log('jai')
+  // console.log('jai')
   data = data.map((item) => {
     return { ...item, income: item.income * 2 };
   });
@@ -45,22 +45,36 @@ function doubleMoney() {
   updateDOM();
 }
 
-function sortList()
-{
-    // console.log('jai')
+function sortList() {
+  // console.log('jai')
 
-    data.sort((a,b)=>b.income - a.income);
+  data.sort((a, b) => b.income - a.income);
 
-    updateDOM();
+  updateDOM();
 }
 
-function showMillionaire()
-{
-//  console.log(data)
-data = data.filter(item => item.income >(1000000));
-// console.log(data);
+function showMillionaire() {
+  //  console.log(data)
+  data = data.filter((item) => item.income > 1000000);
+  // console.log(data);
 
-updateDOM();
+  updateDOM();
+}
+
+function calTotalWealth()
+{
+  // firstly try to calculate the total income form all enteries 
+
+  let total = data.reduce((acc,curr)=> acc + curr.income , 0);
+  console.log(total)
+  // create an elemnet and then add person call in it lets see 
+
+  const element = document.createElement('div');
+  element.classList.add('person');
+  console.log(element)
+  element.innerHTML= `<Strong>Total</Strong> ${formatAmount(total)}`;
+  main.appendChild(element);
+
 }
 
 function updateDOM(storedData = data) {
@@ -81,5 +95,6 @@ addUser.addEventListener("click", getRandomUser);
 double.addEventListener("click", doubleMoney);
 sort.addEventListener("click", sortList);
 showMill.addEventListener("click", showMillionaire);
+calWealth.addEventListener("click", calTotalWealth);
 
 // console.log(data);
